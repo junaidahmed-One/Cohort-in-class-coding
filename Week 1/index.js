@@ -17,11 +17,11 @@ if (gender === "male") {
 
 //Write a program that counts from 0 - 1000 and prints (for loop)
 
-// let count = 0;
+let count = 0;
 
-// for (let i = 0; i <= 1000; i++) {
-//   console.log(`count ${i}`);
-// }
+for (let i = 0; i <= 1000; i++) {
+  console.log(`count ${i}`);
+}
 
 //Write a program prints all the even numbers in an array
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
