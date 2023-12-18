@@ -2,19 +2,33 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const jwtPassword = "123456";
+const config = require("./databaseDetails");
 
-mongoose.connect(
-	"mongodb+srv://admin:R3ARSgCgDiskv9y6@cluster0.q4utiic.mongodb.net/"
-);
+mongoose.connect(config.connection);
 
 const User = mongoose.model("User", {
 	name: String,
 	username: String,
-	pasword: String,
+	password: String,
 });
 
 const app = express();
 app.use(express.json());
+
+async function addUser() {
+	try {
+		const person = new User({
+			name: "Junaid",
+			username: "junaid@gmail.com",
+			password: "123",
+		});
+		await person.save();
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+addUser();
 
 function userExists(username, password) {
 	// should check in the database
