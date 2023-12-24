@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<input
+			oninput="debounceConcept()"
+			id="num1"
+			type="text"
+			placeholder="First number"
+		/>
+		<br /><br />
+		<input
+			oninput="debounceConcept()"
+			id="num2"
+			type="text"
+			placeholder="Second number"
+		/><br /><br />
+		<!--<button onclick="populateFromBackend()">Caculate Sum</button>-->
+		<p id="ans"></p>
+
+		<script>
+			function populateP() {
+				const num1 = document.getElementById("num1").value;
+				const num2 = document.getElementById("num2").value;
+				const sum = parseInt(num1) + parseInt(num2);
+				return (document.getElementById(
+					"ans"
+				).innerHTML = `The sum is ${sum}`);
+			}
+
+			function populateFromBackend() {
+				const num1 = document.getElementById("num1").value;
+				const num2 = document.getElementById("num2").value;
+				fetch(
+					"https://sum-server.100xdevs.com/sum?a=" +
+						num1 +
+						"&b=" +
+						num2
+				).then(function (response) {
+					response.text().then(function (ans) {
+						document.getElementById(
+							"ans"
+						).innerHTML = `The sum from backend is ${ans}`;
+					});
+				});
+			}
+			let timeout;
+			function debounceConcept() {
+				clearTimeout(timeout);
+				timeout = setTimeout(function () {
+					populateFromBackend();
+				}, 1000);
+			}
+		</script>
+	</body>
+</html>
