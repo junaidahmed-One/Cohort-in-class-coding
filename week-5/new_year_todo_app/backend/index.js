@@ -1,10 +1,11 @@
 const express = require("express");
-import { createTodo, updateTodo } from "./types";
-import { todo } from "./dbSchema";
+const { createTodo, updateTodo } = require("./types");
+const { todo } = require("./dbSchema");
+const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-
+app.use(cors());
 app.post("/todo", function (req, res) {
 	const todoBody = req.body;
 	const parsedBody = createTodo.safeParse(todoBody);
@@ -16,7 +17,6 @@ app.post("/todo", function (req, res) {
 		return;
 	}
 	todo.create({
-		id: todoBody.id,
 		title: todoBody.title,
 		description: todoBody.description,
 		completed: false,
@@ -47,7 +47,7 @@ app.put("/completed", async function (req, res) {
 
 	await todo.update(
 		{
-			id: req.body.id,
+			_id: req.body.id,
 		},
 		{
 			completed: true,
@@ -55,4 +55,6 @@ app.put("/completed", async function (req, res) {
 	);
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+	console.log("Server running...");
+});
