@@ -1,0 +1,37 @@
+
+1. **Navigation:**
+   - Go to File: `Ctrl + P`
+   - Go to Symbol: `Ctrl + Shift + O`
+   - Go to Line: `Ctrl + G`
+
+2. **Editing:**
+   - Cut line: `Ctrl + X`
+   - Copy line: `Ctrl + C`
+   - Paste line below: `Ctrl + V`
+   - Undo: `Ctrl + Z`
+   - Redo: `Ctrl + Y`
+
+3. **Selection:**
+   - Select all occurrences of current word: `Ctrl + Shift + L`
+   - Expand/Shrink selection: `Shift + Alt + Left/Right arrow`
+   - Multiline cursor: `Alt + Click`
+
+4. **Search and Replace:**
+   - Find: `Ctrl + F`
+   - Replace: `Ctrl + H`
+   - Find next match: `F3` (or `Ctrl + G`)
+   - Find previous match: `Shift + F3` (or `Ctrl + Shift + G`)
+
+5. **View:**
+   - Toggle sidebar visibility: `Ctrl + B`
+   - Open integrated terminal: `Ctrl + ` (backtick)
+   - Toggle full screen: `F11`
+
+6. **Code Formatting:**
+   - Format document: `Shift + Alt + F`
+   - Format selection: `Ctrl + K, Ctrl + F`
+
+7. **Git Integration:**
+   - Open source control: `Ctrl + Shift + G`
+   - Stage changes: `Ctrl + S`
+   - Commit changes: `Ctrl + Enter`
