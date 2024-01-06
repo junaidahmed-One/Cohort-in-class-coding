@@ -1,28 +1,39 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import { memo } from "react";
 
-let counter = 4;
 function App() {
+	const [todos, setTodos] = useState([]);
+
+	useEffect(() => {
+		setInterval(() => {
+			fetch("https://sum-server.100xdevs.com/todos").then(async (res) => {
+				const json = await res.json();
+				setTodos(json.todos);
+			});
+		}, 5000);
+	}, []);
+
 	return (
 		<div>
-			<CardWrapper>
-				<TextComponent></TextComponent>
-			</CardWrapper>
-			<CardWrapper>
-				<TextComponent></TextComponent>
-			</CardWrapper>
+			{todos.map((todo) => (
+				<Todo
+					key={todo.id}
+					title={todo.title}
+					description={todo.description}
+				></Todo>
+			))}
 		</div>
 	);
 }
 
-function CardWrapper({ children }) {
+function Todo({ title, description }) {
 	return (
-		<div style={{ border: "2px solid black", padding: 20 }}>{children}</div>
+		<div>
+			<h1>{title}</h1>
+			<h4>{description}</h4>
+		</div>
 	);
-}
-
-function TextComponent() {
-	return <div>Text Component</div>;
 }
 
 export default App;
