@@ -1,17 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { memo } from "react";
+import axios from "axios";
 
 function App() {
 	const [todos, setTodos] = useState([]);
 
 	useEffect(() => {
-		setInterval(() => {
-			fetch("https://sum-server.100xdevs.com/todos").then(async (res) => {
-				const json = await res.json();
-				setTodos(json.todos);
-			});
-		}, 5000);
+		axios.get("https://sum-server.100xdevs.com/todos").then(function (res) {
+			setTodos(res.data.todos);
+		});
 	}, []);
 
 	return (
