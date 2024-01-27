@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function App() {
+function useTodo() {
 	const [todos, setTodos] = useState([]);
 
 	useEffect(() => {
@@ -10,6 +10,11 @@ function App() {
 		});
 	}, []);
 
+	return todos;
+}
+
+function App() {
+	const todos = useTodo();
 	return (
 		<>
 			{todos.map((todo, index) => (
