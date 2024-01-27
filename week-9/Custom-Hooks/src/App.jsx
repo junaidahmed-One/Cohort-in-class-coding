@@ -1,35 +1,42 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function useTodo() {
+function useTodos(n) {
 	const [todos, setTodos] = useState([]);
-	const [isLoading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
+		const value = setInterval(() => {
+			axios.get("https://sum-server.100xdevs.com/todos").then((res) => {
+				setTodos(res.data.todos);
+				setLoading(false);
+			});
+		}, n * 1000);
+
 		axios.get("https://sum-server.100xdevs.com/todos").then((res) => {
 			setTodos(res.data.todos);
 			setLoading(false);
 		});
-	}, []);
 
-	return { todos, isLoading };
+		return () => {
+			clearInterval(value);
+		};
+	}, [n]);
+
+	return { todos, loading };
 }
 
 function App() {
-	const { todos, isLoading } = useTodo();
+	const { todos, loading } = useTodos(3);
 
-	if (isLoading) {
-		return (
-			<div>
-				{console.log("Loading...")}
-				Loading....
-			</div>
-		);
+	if (loading) {
+		return <div> loading... </div>;
 	}
+
 	return (
 		<>
-			{todos.map((todo, index) => (
-				<Track key={index} todo={todo} />
+			{todos.map((todo) => (
+				<Track todo={todo} />
 			))}
 		</>
 	);
