@@ -1,10 +1,10 @@
-interface User {
+interface Users {
 	firstName: string;
 	lastName: string;
 	age: number;
 }
 
-function isLegal(user: User) {
+function isLegal(user: Users) {
 	if (user.age >= 18) {
 		return true;
 	}
