@@ -30,3 +30,6 @@ async function getUser(email: string) {
 
 // Example usage
 getUser("user1@example.com").catch(console.error);
+/*
+SELECT u.id u.username, a.city, a.pincode FROM users u JOIN addresses a ON u.id = a.user_id WHERE u.id = your_id
+*/
